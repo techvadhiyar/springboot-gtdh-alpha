@@ -52,3 +52,16 @@ Registry URL: registry.heroku.com
 Username: your Heroku email address
 Email: your Heroku email address
 Password: your Heroku API key
+
+https://sfdcbrewery.github.io/SalesforceDockerXHeroku/
+
+Troubleshooting
+===============
+Does not work upon deployment....not sure why
+https://stackoverflow.com/questions/43579432/spring-boot-unable-to-start-embedded-tomcat-servlet-container
+https://dzone.com/articles/spring-boot-heroku-and-cicd 
+(uses oraclejdk8 in Travis CI)
+https://stackoverflow.com/questions/36859646/springboot-unable-to-start-embedded-tomcat 
+(this one says change to oraclejdk8)
+https://github.com/arun-gupta/docker-images/blob/master/oracle-jdk/Dockerfile
+(Including the oracle jdk1.8 as part of the docker file)
