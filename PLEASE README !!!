@@ -1,0 +1,54 @@
+=============================
+Docker + Travis CI + Heroku
+=============================
+https://www.youtube.com/watch?v=UvEI7CQ6Isc
+https://devopstutorialspoint.com/deploy-your-dockerize-app-in-heroku-with-travis-ci-its-pretty-simple/
+(Youtube and web page from the same author)
+
+https://medium.com/weekly-webtips/your-next-dockerized-spring-boot-application-with-travis-and-heroku-83800b3a3ad8
+
+https://www.youtube.com/watch?v=ADoQLyOgTus
+(this guy uses Git Hub to do the build and deploy to Heroku)
+
+https://medium.com/swlh/continuous-everything-automatic-deployments-to-heroku-with-travis-ci-770eb36b4b01 (no docker - just a rails app) 
+
+# shows some of the docker commands...
+https://devcenter.heroku.com/articles/container-registry-and-runtime
+
+
+Also check out these:
+https://devcenter.heroku.com/articles/container-registry-and-runtime  -- how to deploy to Heroku - we will use the container registry method.
+
+As so:
+
+Install the Heroku CLI
+Download and install the Heroku CLI.
+
+If you haven't already, log in to your Heroku account and follow the prompts to create a new SSH public key.
+$ heroku login
+
+
+Log in to Container Registry
+You must have Docker set up locally to continue. You should see output when you run this command.
+$ docker ps
+
+
+Now you can sign into Container Registry.
+$ heroku container:login
+
+Push your Docker-based app
+Build the Dockerfile in the current directory and push the Docker image.
+$ heroku container:push web
+
+
+Deploy the changes
+Release the newly pushed images to deploy your app.
+$ heroku container:release web
+
+
+If you are using a third party CI/CD platform, you can push images to the registry. First authenticate with the following information:
+
+Registry URL: registry.heroku.com
+Username: your Heroku email address
+Email: your Heroku email address
+Password: your Heroku API key
