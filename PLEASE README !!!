@@ -59,9 +59,15 @@ Troubleshooting
 ===============
 Does not work upon deployment....not sure why
 https://stackoverflow.com/questions/43579432/spring-boot-unable-to-start-embedded-tomcat-servlet-container
-https://dzone.com/articles/spring-boot-heroku-and-cicd 
+https://dzone.com/articles/spring-boot-heroku-and-cicd  ---------- nice article !
 (uses oraclejdk8 in Travis CI)
 https://stackoverflow.com/questions/36859646/springboot-unable-to-start-embedded-tomcat 
 (this one says change to oraclejdk8)
 https://github.com/arun-gupta/docker-images/blob/master/oracle-jdk/Dockerfile
 (Including the oracle jdk1.8 as part of the docker file)
+
+OK - so changing the server.port=8000 and cleaning up the docker file to remove EXPOSE=80 fixed it. Now this error
+Web process failed to bind to $PORT within 60 seconds of launch
+Found this article...
+https://stackoverflow.com/questions/45557881/spring-boot-on-heroku-web-process-failed-to-bind-to-port-within-90-seconds-of
+(need to set server.port=${PORT:8000}) - also explained in the above dzone article...
