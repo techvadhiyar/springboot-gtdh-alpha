@@ -10,18 +10,20 @@ services:
 before_install:
   - chmod +x mvnw
   
+before_script:
+  - curl https://cli-assets.heroku.com/install.sh | sh
+  - docker login --username=$HEROKU_LOGIN --password=$HEROKU_API_KEY registry.heroku.com  
+  
 script: ./mvnw clean install 
 
 after_success:
   - docker build -t pointinsights/springboot-gtdh-alpha:latest .
   - docker login -u "$DOCKER_ID" -p "$DOCKER_PASSWORD"
-  - docker push pointinsights/springboot-gtdh-alpha:latest
+  - docker push pointinsights/springboot-gtdh-alpha:latest   
     
 deploy:
   provider: script
   script:
-    curl https://cli-assets.heroku.com/install.sh | sh
-    docker login --username=$HEROKU_LOGIN --password=$HEROKU_API_KEY registry.heroku.com 
     docker push registry.heroku.com/$HEROKU_APP/web;
     heroku container:release web --app $HEROKU_APP
   on: 
